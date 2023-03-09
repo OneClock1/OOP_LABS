@@ -1,7 +1,5 @@
 package Book.Libary;
 
-import java.util.Date;
-
 public class Book {
 
     private int id;
@@ -65,12 +63,12 @@ public class Book {
     public String toString(){
         return "Книжка:"+
                 "\nId = "+ id +
-                ",\nНазва = " + name +
-                ",\nАвтор = " + author +
-                ",\nВидавництво = " + publication +
-                ",\nРік видання = " + yearPublication +
-                ",\nКількість сторінок = " + numberPages +
-                ",\nЦіна = " + price + "грн";
+                ",\nName = " + name +
+                ",\nAuthor = " + author +
+                ",\nPublication = " + publication +
+                ",\nYear publication = " + yearPublication +
+                ",\nNumber pages = " + numberPages +
+                ",\nPrice = " + price + "грн";
     }
 
 }

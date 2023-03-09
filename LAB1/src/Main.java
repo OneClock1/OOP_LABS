@@ -1,12 +1,11 @@
 import Book.Libary.Book;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 
 public class Main {
-    private ArrayList<Book> bookList = new ArrayList<Book>();
+    private ArrayList<Book> bookArrayList = new ArrayList<Book>();
     public static void main(String[] args) {
         Main main = new Main();
 
@@ -33,9 +32,9 @@ public class Main {
                 408,
                 400);
 
-        main.bookList.add(book1);
-        main.bookList.add(book2);
-        main.bookList.add(book3);
+        main.bookArrayList.add(book1);
+        main.bookArrayList.add(book2);
+        main.bookArrayList.add(book3);
 
         boolean isActive = true;
         while (isActive){
@@ -46,25 +45,23 @@ public class Main {
                     "4.Вийти з програми.\n"+
                     "Виберіть критерій за якими буде робитись пошук:"
             );
-            Scanner s = new Scanner(System.in);
-            int select = s.nextInt();
+            Scanner scanner = new Scanner(System.in);
 
-            switch (select)
+            switch (scanner.nextInt())
             {
                 case(1):
                     System.out.print("Ведіть автора: ");
-                    s = new Scanner(System.in);
-                    System.out.println(main.searchAuthor(s.nextLine()));
+                    scanner = new Scanner(System.in);
+                    System.out.println(main.searchAuthor(scanner.nextLine()));
                     break;
                 case(2):
                     System.out.print("Ведіть видавництво: ");
-                    s = new Scanner(System.in);
-                    System.out.println(main.searchPublisher(s.nextLine()));
+                    scanner = new Scanner(System.in);
+                    System.out.println(main.searchPublisher(scanner.nextLine()));
                     break;
                 case(3):
                     System.out.print("Ведіть рік: ");
-                    s = new Scanner(System.in);
-                    System.out.println(main.searchYearPublication(s.nextInt()));
+                    System.out.println(main.searchYearPublication(scanner.nextInt()));
                     break;
                 case(4):
                     isActive = false;
@@ -76,25 +73,25 @@ public class Main {
 
     public String searchAuthor(String author){
         String result = "";
-        for (int i = 0; i < bookList.size(); i++ ){
-            if(author.equals(bookList.get(i).getAuthor()))
-                result += "\n\n"+ bookList.get(i).toString();
+        for (int i = 0; i < bookArrayList.size(); i++ ){
+            if(author.equals(bookArrayList.get(i).getAuthor()))
+                result += "\n\n"+ bookArrayList.get(i).toString();
         }
         return result;
     }
     public String searchPublisher(String publication){
         String result = "";
-        for (int i = 0; i < bookList.size(); i++ ){
-            if(publication.equals(bookList.get(i).getPublication()))
-                result += "\n\n"+ bookList.get(i).toString();
+        for (int i = 0; i < bookArrayList.size(); i++ ){
+            if(publication.equals(bookArrayList.get(i).getPublication()))
+                result += "\n\n"+ bookArrayList.get(i).toString();
         }
         return result;
     }
     public String searchYearPublication(int year){
         String result = "";
-        for (int i = 0; i < bookList.size(); i++ ){
-            if(bookList.get(i).getYearPublication() >= year)
-                result += "\n\n"+ bookList.get(i).toString();
+        for (int i = 0; i < bookArrayList.size(); i++ ){
+            if(bookArrayList.get(i).getYearPublication() >= year)
+                result += "\n\n"+ bookArrayList.get(i).toString();
         }
         return result;
     }
