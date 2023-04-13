@@ -1,15 +1,15 @@
 import Book.Libary.Book;
 import Book.Libary.PaperBook;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
+import Book.Libary.List.BooksList;
 
 
 public class Main {
 
-
-    private ArrayList<PaperBook> bookArrayList = new ArrayList<PaperBook>();
+    private int counterId = 1;
+    private BooksList paperBookList = new BooksList();
+    private boolean isActive = true;
     public static void main(String[] args) {
         Main main = new Main();
 
@@ -21,83 +21,97 @@ public class Main {
                 152,
                 300);
 
-        PaperBook book2 = new PaperBook(34,
-                "Перфекціоністи. Як інженери створили сучасний світ",
-                "Саймон Вінчестер",
-                "Meridian Czernowitz",
-                2019,
-                448,
-                350);
-        PaperBook book3 = new PaperBook(34,
-                "Майбутнє розуму. Наукові спроби осягнути, вдосконалити і підсилити інтелект",
-                "Мічіо Кайку",
-                "Літопис",
-                2017,
-                408,
-                400);
 
-        main.bookArrayList.add(book1);
-        main.bookArrayList.add(book2);
-        main.bookArrayList.add(book3);
+        main.paperBookList.add(book1);
 
-        boolean isActive = true;
-        while (isActive){
-            System.out.printf("\nКритерії за пошуком:\n"+
-                    "1.По списку книг, заданого автора.\n"+
-                    "2.По списку книг, що видані заданим видавництвом.\n"+
-                    "3.По списку книг, що випущені після заданого року.\n" +
-                    "4.Вийти з програми.\n"+
+        while (main.isActive) {
+
+            System.out.println("...Бібліотека паперових книг...");
+            System.out.printf("\nМеню:\n" +
+                    "1.Додати книгу.\n" +
+                    "2.Вивести всі книги.\n" +
+                    "3.Знайти книгу.\n" +
+                    "4.Вийти з програми.\n" +
                     "Виберіть критерій за якими буде робитись пошук:"
             );
             Scanner scanner = new Scanner(System.in);
             int select = scanner.nextInt();
-            switch (select)
-            {
+            switch (select) {
 
-                case(1):
-                    System.out.print("Ведіть автора: ");
-                    //scanner = new Scanner(System.in);
-                    System.out.println(main.searchAuthor(scanner.nextLine()));
+                case (1):
+
+                    System.out.println("Додати книгу:");
+
+                    scanner = new Scanner(System.in);
+                    main.counterId += 1;
+
+                    System.out.print("Ведіть назву:");
+                    String name = scanner.nextLine();
+
+                    System.out.print("Ведіть автора:");
+                    String author = scanner.nextLine();
+
+                    System.out.print("Ведіть видавництво:");
+                    String publication = scanner.nextLine();
+                    scanner = new Scanner(System.in);
+                    System.out.print("Ведіть кількість сторінок:");
+                    int numberPages = scanner.nextInt();
+
+                    System.out.print("Ведіть дату видання:");
+                    int yearsPublication = scanner.nextInt();
+
+                    System.out.print("Ведіть ціну:");
+                    int price = scanner.nextInt();
+                    main.paperBookList.add(new PaperBook(main.counterId,name, author, publication, yearsPublication, numberPages, price ));
                     break;
-                case(2):
-                    System.out.print("Ведіть видавництво: ");
-                    //scanner = new Scanner(System.in);
-                    System.out.println(main.searchPublisher(scanner.nextLine()));
+                case (2):
+                    System.out.print("Вивести всі книги: ");
+                    for(int i = 0 ; i < main.paperBookList.getLength(); i++)
+                    {
+                        System.out.println(main.paperBookList.get(i).toString());
+                    }
+
                     break;
-                case(3):
-                    System.out.print("Ведіть рік: ");
-                    System.out.println(main.searchYearPublication(scanner.nextInt()));
+                case (3):
+                   main.Search();
                     break;
-                case(4):
-                    isActive = false;
+                case (4):
+                    main.isActive = false;
                     break;
 
             }
         }
     }
+    public void Search(){
+        System.out.printf("\nКритерії за пошуком:\n" +
+                "1.По списку книг, заданого автора.\n" +
+                "2.По списку книг, що видані заданим видавництвом.\n" +
+                "3.По списку книг, що випущені після заданого року.\n" +
+                "4.Назад.\n" +
+                "Виберіть критерій за якими буде робитись пошук:"
+        );
 
-    public String searchAuthor(String author){
-        String result = "";
-        for (int i = 0; i < bookArrayList.size(); i++ ){
-            if(author.equals(bookArrayList.get(i).getAuthor()))
-                result += "\n\n"+ bookArrayList.get(i).toString();
+        Scanner scanner = new Scanner(System.in);
+        int select = scanner.nextInt();
+        switch (select) {
+
+            case (1):
+                System.out.print("Ведіть автора: ");
+                scanner = new Scanner(System.in);
+                System.out.println(paperBookList.searchAuthor(scanner.nextLine()));
+                break;
+            case (2):
+                System.out.print("Ведіть видавництво: ");
+                System.out.println(paperBookList.searchPublisher(scanner.nextLine()));
+                break;
+            case (3):
+                System.out.print("Ведіть рік: ");
+                scanner = new Scanner(System.in);
+                System.out.println(paperBookList.searchYearPublication(scanner.nextInt()));
+                break;
+            case (4):
+                break;
+
         }
-        return result;
-    }
-    public String searchPublisher(String publication){
-        String result = "";
-        for (int i = 0; i < bookArrayList.size(); i++ ){
-            if(publication.equals(bookArrayList.get(i).getPublication()))
-                result += "\n\n"+ bookArrayList.get(i).toString();
-        }
-        return result;
-    }
-    public String searchYearPublication(int year){
-        String result = "";
-        for (int i = 0; i < bookArrayList.size(); i++ ){
-            if(bookArrayList.get(i).getYearPublication() >= year)
-                result += "\n\n"+ bookArrayList.get(i).toString();
-        }
-        return result;
     }
 }
