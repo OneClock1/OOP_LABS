@@ -9,12 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BooksList{
-    //protected Book[] bookArray = new PaperBook();
-
     private int size = 0;
     protected List<Book> bookList;
     protected Book[] booksArray;
-    //protected Book[] bookArray = new PaperBook();
 
     public BooksList(){
         bookList = new ArrayList<Book>();
