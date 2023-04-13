@@ -42,7 +42,7 @@ public class Main {
 
                     System.out.println("Додати книгу:");
 
-                    scanner = new Scanner(System.in);
+                    scanner.nextLine();
                     main.counterId += 1;
 
                     System.out.print("Ведіть назву:");
@@ -53,13 +53,12 @@ public class Main {
 
                     System.out.print("Ведіть видавництво:");
                     String publication = scanner.nextLine();
-                    scanner = new Scanner(System.in);
                     System.out.print("Ведіть кількість сторінок:");
                     int numberPages = scanner.nextInt();
-
+                    scanner.nextInt();
                     System.out.print("Ведіть дату видання:");
                     int yearsPublication = scanner.nextInt();
-
+                    scanner.nextInt();
                     System.out.print("Ведіть ціну:");
                     int price = scanner.nextInt();
                     main.paperBookList.add(new PaperBook(main.counterId,name, author, publication, yearsPublication, numberPages, price ));
@@ -93,11 +92,11 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int select = scanner.nextInt();
+        scanner.nextLine();
         switch (select) {
 
             case (1):
                 System.out.print("Ведіть автора: ");
-                scanner = new Scanner(System.in);
                 System.out.println(paperBookList.searchAuthor(scanner.nextLine()));
                 break;
             case (2):
@@ -106,7 +105,6 @@ public class Main {
                 break;
             case (3):
                 System.out.print("Ведіть рік: ");
-                scanner = new Scanner(System.in);
                 System.out.println(paperBookList.searchYearPublication(scanner.nextInt()));
                 break;
             case (4):
