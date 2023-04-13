@@ -1,35 +1,39 @@
 package Book.Libary.List;
 
+import Book.Libary.AudioBook;
 import Book.Libary.Book;
 import Book.Libary.PaperBook;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 public class BooksList{
     //protected Book[] bookArray = new PaperBook();
 
     private int size = 0;
-
-    protected Book[] booksArray = new Book[10];
+    protected List<Book> bookList;
+    protected Book[] booksArray;
     //protected Book[] bookArray = new PaperBook();
 
+    public BooksList(){
+        bookList = new ArrayList<Book>();
+    }
     public void add(Book book) {
-        if (size == booksArray.length) {
-            booksArray = Arrays.copyOf(booksArray, booksArray.length * 2);
-        }
-        booksArray[size] = book;
-        size++;
+       bookList.add(book);
     }
 
 
     public void remove(int index) {
-        System.arraycopy(booksArray, index + 1, booksArray, index, booksArray.length - 1 - index);
+        bookList.remove(index);
     }
 
     public Book get(int index) {
-        return booksArray[index];
+       return bookList.get(index);
     }
 
     public int getLength() {
-        return booksArray.length;
+        return bookList.size();
     }
 
 
